@@ -95,12 +95,87 @@ function populateBoard() {
 
         cardElement.appendChild(frontFace);
         cardElement.appendChild(backFace);
+        
+        // Store relevant data in the DOM
+        cardElement.dataset.pairId = card.pair_id;
+        cardElement.dataset.uid = card.uid;
+
+        // Add click listener
+        cardElement.addEventListener('click', handleCardClick)
 
         // Render to the game board
         gameBoard.appendChild(cardElement)
+
+        
     })
+}
+
+function handleCardClick() {
+    // Something occuring which indicates that the user should not be able to click cards
+    if (lockBoard) return;
+    // Can't click same card twice
+    if (this === firstSelectedCard) return;
+
+    // Flip our card
+    this.classList.add("flipped")
+
+    // Store our selected card
+    if (!firstSelectedCard) {
+        firstSelectedCard = this;
+        return;
+    }
+
+    // Second card selected
+    secondSelectedCard = this;
+    turns++;
+    document.querySelector("#turns").textContent = turns;
+    lockBoard = true;
+
+    checkForMatch();
+}
+
+function checkForMatch() {
+    let isMatch = firstSelectedCard.dataset.pair_id === secondSelectedCard.dataset.pair_id;
+
+    isMatch ? disableCards() : unflipCards();
+}
+
+function disableCards() {
+    firstSelectedCard.removeEventListener("click", handleCardClick);
+    secondSelectedCard.removeEventListener("click", handleCardClick);
+
+    resetBoard();
+}
+
+function unflipCards() {
+    setTimeout(() => {
+        firstSelectedCard.classList.remove("flipped");
+        secondSelectedCard.classList.remove("flipped");
+        resetBoard();
+    }, 1000)
+}
+
+function resetBoard() {
+    // Reset relevant variables
+    firstSelectedCard = null;
+    secondSelectedCard = null;
+    lockBoard = false;
+}
+
+function newGame() {
+    firstSelectedCard = null;
+    secondSelectedCard = null;
+
+    generateCardSet(6);
+    shuffleCards();
+    populateBoard();
+    lockBoard = false;
+    turns = 0;
+    document.querySelector("#turns").textContent = turns;
 }
 
 generateCardSet(6);
 shuffleCards();
 populateBoard();
+
+document.querySelector(".reset-button").addEventListener('click', newGame);
