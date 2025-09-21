@@ -1,13 +1,94 @@
+:root {
+    --primary-color: #6B46C1;
+    --secondary-color: #4A5568;
+    --accent-color: #F6AD55;
+    --bg-color: #1A202C;
+    --card-color: #e4e4e4;
+    --text-color: #FFFFFF;
+}
+
 body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    min-width: 100vw;
+    min-height: 100vw;
+
+    /* Coloring */
+    background-color: var(--bg-color);
+    color: var(--text-color)
+}
+
+h1 {
+    text-align: center;
+    font-weight: 700;
+    font-size: clamp(12px, 40px, 50px)
+}
+
+.game-info {
+    font-size: clamp(10px, 20px, 25px)
+}
+
+.game-board {
+    display: grid;
+    justify-content: center;
+    grid-gap: 16px;
+    grid-template-columns: repeat(6, 140px);
+    grid-template-rows: repeat(2, calc(140px / 2 * 3));
+}
+
+.card {
+    height: calc(140px / 2 * 3);
+    width: 140px;
+    border-radius: 20px;
+    background-color: var(--card-color);
+    position: relative;
+    transform-style: preserve-3d;
+    transition: all 0.5s ease-in-out;
+}
+
+.card.flipped {
+    transform: rotateY(180deg);
+}
+
+.front,
+.back {
+    backface-visibility: hidden;
+    position: absolute;
+    border-radius: 10px;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.card.front {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Makes the card face down by default*/
+    transform: rotateY(180deg);
+}
+
+.card.back {
+    
 }
 
 .reset-button{
     border: none;
     font-family: inherit;
     cursor: pointer;
-    padding: 10px 20px;
+    padding: clamp(8px, 2vh, 20px);
     margin-top: 40px;
+
+    /* Coloring */
+    background-color: var(--primary-color);
+
+    /* Rounded corners */
+    border-radius: 8px;
+}
+
+.reset-button:hover {
+    /* Change on mouse over */
+    background-color: var(--secondary-color);
 }
