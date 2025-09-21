@@ -72,3 +72,35 @@ function shuffleCards() {
         [cards[i], cards[j]] = [cards[j], cards[i]]
     }
 }
+
+/*
+ * Populates the visible game board with cards
+ */
+function populateBoard() {
+    // Clear existing board
+    gameBoard.innerHTML = '';
+
+    cards.forEach((card, index) => {
+        // Create a card element
+        const cardElement = document.createElement('div');
+        cardElement.classList.add('card');
+
+        // Creating front and back faces of the card
+        const frontFace = document.createElement('div');
+        frontFace.classList.add('front');
+        frontFace.style.backgroundColor = card.color; // Color on front
+
+        const backFace = document.createElement('div');
+        backFace.classList.add('back'); // CSS pattern
+
+        cardElement.appendChild(frontFace);
+        cardElement.appendChild(backFace);
+
+        // Render to the game board
+        gameBoard.appendChild(cardElement)
+    })
+}
+
+generateCardSet(6);
+shuffleCards();
+populateBoard();
