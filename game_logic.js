@@ -136,6 +136,8 @@ function checkForMatch() {
     let isMatch = firstSelectedCard.dataset.pairId === secondSelectedCard.dataset.pairId;
 
     isMatch ? disableCards() : unflipCards();
+
+    checkWin();
 }
 
 /*
@@ -145,8 +147,9 @@ function disableCards() {
     firstSelectedCard.removeEventListener("click", handleCardClick);
     secondSelectedCard.removeEventListener("click", handleCardClick);
 
-    highlightCard(firstSelectedCard);
-    highlightCard(secondSelectedCard);
+    // Add matched styling
+    firstSelectedCard.classList.add("matched");
+    secondSelectedCard.classList.add("matched");
 
     resetBoard();
 }
@@ -178,8 +181,16 @@ function newGame() {
     document.querySelector("#turns").textContent = turns;
 }
 
-function highlightCard(card) {
-    card.style.outline = "5px solid #00fa11ff";
+function checkWin() {
+    // Get a NodeList of all cards and turn them into an array
+    const allCards = document.querySelectorAll('.card');
+    const allMatched = Array.from(allCards).every(card => 
+        card.classList.contains('matched')
+    );
+    
+    if (allMatched) {
+        alert(`You won in ${turns} turns!`);
+    }
 }
 
 generateCardSet(6);
