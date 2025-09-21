@@ -36,30 +36,32 @@ const kellyColors = [
 class Card {
     /**
      * @param {string} color
-     * @param {number} id
+     * @param {number} uid
+     * @param {number} pair_id
      */
-    constructor(color, id) {
+    constructor(color, uid, pair_id) {
         this.color = color;
-        this.id = id;
+        this.uid = uid;
+        this.pair_id = pair_id;
     }
 }
 
 /* 
  * Generates a random set of unique cards
 */
-function generateCardSet(count) {
+function generateCardSet(pairs) {
     // Stores colors temporarily to ensure uniqueness between cards
-    let tempColors = kellyColors
+    let tempColors = [...kellyColors];
     cards.length = 0; // resets cards array for reuse
-    for (i = 0; i < tempColors.length; i++) {
+    for (let i = 0; i < pairs; i++) {
         // Generates a random color and assigns an id
-        randIndex = Math.floor(Math.random() * tempColors.length);
-        color = tempColors[randIndex];
-        id = i++;
+        const randIndex = Math.floor(Math.random() * tempColors.length);
+        const color = tempColors[randIndex];
 
         // Remove previously used color to avoid duplicates and add new card to card array
         tempColors.splice(randIndex, 1);
-        cards.push(Card(color, id));
+        cards.push(new Card(color, i * 2, i));
+        cards.push(new Card(color, i * 2 + 1, i));
     }
 }
 
