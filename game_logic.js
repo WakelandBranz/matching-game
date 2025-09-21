@@ -37,12 +37,12 @@ class Card {
     /**
      * @param {string} color
      * @param {number} uid
-     * @param {number} pair_id
+     * @param {number} pairId
      */
-    constructor(color, uid, pair_id) {
+    constructor(color, uid, pairId) {
         this.color = color;
         this.uid = uid;
-        this.pair_id = pair_id;
+        this.pairId = pairId;
     }
 }
 
@@ -97,7 +97,7 @@ function populateBoard() {
         cardElement.appendChild(backFace);
         
         // Store relevant data in the DOM
-        cardElement.dataset.pairId = card.pair_id;
+        cardElement.dataset.pairId = card.pairId;
         cardElement.dataset.uid = card.uid;
 
         // Add click listener
@@ -105,8 +105,6 @@ function populateBoard() {
 
         // Render to the game board
         gameBoard.appendChild(cardElement)
-
-        
     })
 }
 
@@ -135,14 +133,20 @@ function handleCardClick() {
 }
 
 function checkForMatch() {
-    let isMatch = firstSelectedCard.dataset.pair_id === secondSelectedCard.dataset.pair_id;
+    let isMatch = firstSelectedCard.dataset.pairId === secondSelectedCard.dataset.pairId;
 
     isMatch ? disableCards() : unflipCards();
 }
 
+/*
+ * A pair has been found! Permanently flip them and highlight the pair!
+ */
 function disableCards() {
     firstSelectedCard.removeEventListener("click", handleCardClick);
     secondSelectedCard.removeEventListener("click", handleCardClick);
+
+    highlightCard(firstSelectedCard);
+    highlightCard(secondSelectedCard);
 
     resetBoard();
 }
@@ -152,7 +156,7 @@ function unflipCards() {
         firstSelectedCard.classList.remove("flipped");
         secondSelectedCard.classList.remove("flipped");
         resetBoard();
-    }, 1000)
+    }, 1000);
 }
 
 function resetBoard() {
@@ -172,6 +176,10 @@ function newGame() {
     lockBoard = false;
     turns = 0;
     document.querySelector("#turns").textContent = turns;
+}
+
+function highlightCard(card) {
+    card.style.outline = "5px solid #00fa11ff";
 }
 
 generateCardSet(6);
