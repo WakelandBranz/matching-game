@@ -25,20 +25,25 @@ h1 {
     font-size: clamp(12px, 40px, 50px)
 }
 
-.game-info {
+.stats-container {
     /* Existing styles */
     font-size: clamp(10px, 20px, 25px);
     
     /* Wraps the box around the text */
-    display: inline-block;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 840px; 
+    margin-bottom: 20px;
+}
 
-    /* Box styles */
+.turn-info, .matches-info {
+    /* Individual box styling */
     border: 2px solid var(--accent-color);
-    background-color: var(--secondary-color);
     border-radius: 8px;
+    background-color: var(--secondary-color);
     padding: 10px 20px;
-    margin-top: 20px 0;
-    text-align: left;
+    font-size: clamp(10px, 20px, 25px);
 }
 
 .game-board {

@@ -1,10 +1,12 @@
+/* GLOBALS */
 const gameBoard = document.querySelector(".game-board");
 // Cards will be stored in a vector. This will allow me to add more rows/columns as time goes on.
 let cards = [];
 let firstSelectedCard, secondSelectedCard;
 let lockBoard = false;
-// Turns are 0 by default in the html so no need to set it manually
+// Turns and matches are 0 by default in the html so no need to set it manually
 let turns = 0;
+let matches = 0;
 
 // Kelly's 22 Colors of Maximum Contrast
 const kellyColors = [
@@ -51,6 +53,7 @@ class Card {
 */
 function generateCardSet(pairs) {
     // Stores colors temporarily to ensure uniqueness between cards
+    // Note, the [...<object>] syntax creates a clone but simply setting a new variable equal to another creates a reference.
     let tempColors = [...kellyColors];
     cards.length = 0; // resets cards array for reuse
     for (let i = 0; i < pairs; i++) {
@@ -150,6 +153,10 @@ function disableCards() {
     // Add matched styling
     firstSelectedCard.classList.add("matched");
     secondSelectedCard.classList.add("matched");
+
+    // Match found, increase match counter.
+    matches++;
+    document.querySelector("#matches").textContent = matches;
 
     resetBoard();
 }
