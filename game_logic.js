@@ -10,28 +10,28 @@ let pairs = 0;
 
 // Kelly's 22 Colors of Maximum Contrast
 const kellyColors = [
-  "#FFB300", // Vivid Yellow
-  "#803E75", // Strong Purple
-  "#FF6800", // Vivid Orange
-  "#A6BDD7", // Very Light Blue
-  "#C10020", // Vivid Red
-  "#CEA262", // Grayish Yellow
-  "#817066", // Medium Gray
-  "#007D34", // Vivid Green
-  "#F6768E", // Strong Purplish Pink
-  "#00538A", // Strong Blue
-  "#FF7A5C", // Strong Yellowish Pink
-  "#53377A", // Strong Violet
-  "#FF8E00", // Vivid Orange Yellow
-  "#B32851", // Strong Purplish Red
-  "#F4C800", // Vivid Greenish Yellow
-  "#7F180D", // Strong Reddish Brown
-  "#93AA00", // Vivid Yellowish Green
-  "#593315", // Deep Yellowish Brown
-  "#F13A13", // Vivid Reddish Orange
-  "#232C16", // Dark Olive Green
-  "#00A1C2", // Vivid Blue (Bonus from other Kelly references)
-  "#A0C8F0"  // Light Pastel Blue (Soft but distinguishable)
+  "#fdfdfd", // White
+  "#1d1d1d", // Black
+  "#ebce2b", // Yellow
+  "#702c8c", // Purple
+  "#db6917", // Orange
+  "#96cde6", // Light Blue
+  "#ba1c30", // Red
+  "#c0bd7f", // Buff
+  "#7f7e80", // Gray
+  "#5fa641", // Green
+  "#d485b2", // Purple Pink
+  "#4277b6", // Blue
+  "#df8461", // Yellow Pink
+  "#463397", // Violet
+  "#e1a11a", // Orange Yellow
+  "#91218c", // Purple Red
+  "#e8e948", // Green Yellow
+  "#7e1510", // Red Brown
+  "#92ae31", // Yellow Green
+  "#6f340d", // Yellow Brown
+  "#d32b1e", // Red Orange
+  "#2b3514", // Olive Green
 ];
 
 // Used for extensibility & ease of use
