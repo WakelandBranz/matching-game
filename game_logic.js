@@ -154,7 +154,7 @@ function disableCards() {
     firstSelectedCard.classList.add("matched");
     secondSelectedCard.classList.add("matched");
 
-    // Match found, increase match counter.
+    // Match found, increase match counter
     matches++;
     document.querySelector("#matches").textContent = matches;
 
