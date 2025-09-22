@@ -4,9 +4,9 @@ const gameBoard = document.querySelector(".game-board");
 let cards = [];
 let firstSelectedCard, secondSelectedCard;
 let lockBoard = false;
-// Turns and matches are 0 by default in the html so no need to set it manually
+// Turns and pairs are 0 by default in the html so no need to set it manually
 let turns = 0;
-let matches = 0;
+let pairs = 0;
 
 // Kelly's 22 Colors of Maximum Contrast
 const kellyColors = [
@@ -155,8 +155,8 @@ function disableCards() {
     secondSelectedCard.classList.add("matched");
 
     // Match found, increase match counter
-    matches++;
-    document.querySelector("#matches").textContent = matches;
+    pairs++;
+    document.querySelector("#pairs").textContent = pairs;
 
     resetBoard();
 }
@@ -186,8 +186,8 @@ function newGame() {
     lockBoard = false;
     turns = 0;
     document.querySelector("#turns").textContent = turns;
-    matches = 0;
-    document.querySelector("#matches").textContent = matches;
+    pairs = 0;
+    document.querySelector("#pairs").textContent = pairs;
 }
 
 function checkWin() {
