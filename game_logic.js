@@ -186,6 +186,8 @@ function newGame() {
     lockBoard = false;
     turns = 0;
     document.querySelector("#turns").textContent = turns;
+    matches = 0;
+    document.querySelector("#matches").textContent = matches;
 }
 
 function checkWin() {
